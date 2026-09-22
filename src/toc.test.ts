@@ -1,0 +1,19 @@
+import { describe, expect, it } from 'vitest'
+import { extractToc } from './toc'
+
+describe('extractToc', () => {
+  it('keeps Korean headings, levels, and unique ids', () => {
+    expect(extractToc('# 소개\n## 같은 제목\n### 같은 제목\n## **굵은** `코드`')).toEqual([
+      { id: '소개', level: 1, text: '소개' },
+      { id: '같은-제목', level: 2, text: '같은 제목' },
+      { id: '같은-제목-1', level: 3, text: '같은 제목' },
+      { id: '굵은-코드', level: 2, text: '굵은 코드' },
+    ])
+  })
+
+  it('ignores heading-looking text inside code fences', () => {
+    expect(extractToc('```md\n# 코드 제목\n```\n# 실제 제목')).toEqual([
+      { id: '실제-제목', level: 1, text: '실제 제목' },
+    ])
+  })
+})

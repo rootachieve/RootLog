@@ -1,0 +1,308 @@
+.graph-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 46px 28px 48px;
+  color: var(--semantic-text);
+}
+
+.graph-page h1,
+.graph-page h2,
+.graph-page h3,
+.graph-page p {
+  margin: 0;
+}
+
+.graph-page h1 {
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 1.2;
+}
+
+.graph-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  margin-top: 10px;
+}
+
+.graph-main {
+  min-width: 0;
+  padding-right: 35px;
+}
+
+.graph-intro {
+  color: var(--semantic-muted);
+  font-size: 1.12rem;
+  line-height: 1.6;
+}
+
+.graph-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 30px;
+  margin-top: 33px;
+  color: var(--semantic-muted);
+  font-size: 0.9rem;
+}
+
+.graph-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.graph-line {
+  display: inline-block;
+  width: 48px;
+  border-top: 1.5px solid var(--semantic-graph-edge);
+}
+
+.graph-line-reference { border-top-style: dotted; }
+.graph-line-series { border-top-style: dashed; }
+
+.graph-stage {
+  position: relative;
+  height: min(600px, calc(100vh - 290px));
+  min-height: 440px;
+}
+
+.graph-canvas {
+  position: absolute;
+  inset: 10px 0 54px;
+  cursor: grab;
+}
+
+.graph-canvas:active { cursor: grabbing; }
+.graph-canvas:focus-visible { outline: 2px solid var(--semantic-selected); }
+
+.graph-empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--semantic-muted);
+}
+
+.graph-controls {
+  position: absolute;
+  z-index: 1;
+  bottom: 8px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.graph-controls > button:not(.graph-label-toggle) {
+  width: 40px;
+  height: 32px;
+  border: 1px solid var(--semantic-border);
+  border-radius: 8px;
+  background: var(--semantic-page);
+  color: var(--semantic-text);
+  font: inherit;
+  font-size: 1.55rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.graph-controls > button:hover,
+.graph-label-toggle:hover {
+  background: var(--semantic-hover);
+}
+
+.graph-controls > button:focus-visible,
+.graph-read-link:focus-visible,
+.graph-related a:focus-visible {
+  outline: 2px solid var(--semantic-selected);
+  outline-offset: 3px;
+}
+
+.graph-controls-divider {
+  height: 19px;
+  margin: 0 8px;
+  border-left: 1px solid var(--semantic-border);
+}
+
+.graph-label-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 0;
+  background: var(--semantic-page);
+  color: var(--semantic-text);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.graph-switch {
+  display: flex;
+  align-items: center;
+  width: 36px;
+  height: 20px;
+  padding: 2px;
+  border-radius: 30px;
+  background: var(--semantic-border);
+}
+
+.graph-switch > span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--semantic-page);
+  transition: transform 150ms ease;
+}
+
+.graph-label-toggle[aria-pressed='true'] .graph-switch {
+  background: var(--semantic-selected);
+}
+
+.graph-label-toggle[aria-pressed='true'] .graph-switch > span {
+  transform: translateX(16px);
+}
+
+.graph-sidebar {
+  min-width: 0;
+  padding: 43px 0 0 36px;
+  border-left: 1px solid var(--semantic-border);
+}
+
+.graph-sidebar-eyebrow {
+  font-size: 0.97rem;
+  font-weight: 600;
+}
+
+.graph-sidebar h2 {
+  margin-top: 25px;
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.28;
+}
+
+.graph-post-meta {
+  display: grid;
+  gap: 12px;
+  margin: 25px 0 0;
+  font-size: 0.93rem;
+}
+
+.graph-post-meta > div {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.graph-post-meta dt { color: var(--semantic-muted); }
+.graph-post-meta dd { margin: 0; }
+
+.graph-post-description {
+  margin-top: 18px !important;
+  color: var(--semantic-muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.graph-read-link {
+  display: inline-block;
+  margin-top: 29px;
+  border-bottom: 1px solid var(--semantic-text);
+  color: var(--semantic-text);
+  font-size: 0.96rem;
+  font-weight: 600;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.graph-related {
+  margin-top: 42px;
+  padding-top: 32px;
+  border-top: 1px solid var(--semantic-border);
+}
+
+.graph-related h3 {
+  font-size: 0.97rem;
+  font-weight: 600;
+}
+
+.graph-related h3 span { margin-left: 7px; }
+
+.graph-related ul {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.graph-related li + li { border-top: 1px solid var(--semantic-border); }
+
+.graph-related a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 10px;
+  padding: 18px 0;
+  color: var(--semantic-text);
+  text-decoration: none;
+}
+
+.graph-related a:hover .graph-related-title { text-decoration: underline; }
+
+.graph-related-title {
+  min-width: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.graph-related-kind {
+  grid-column: 1;
+  margin-top: 5px;
+  color: var(--semantic-muted);
+  font-size: 0.84rem;
+}
+
+.graph-related-score {
+  display: grid;
+  grid-row: 1 / 3;
+  grid-column: 2;
+  gap: 4px;
+  justify-items: end;
+  align-content: center;
+  font-size: 0.92rem;
+}
+
+.graph-related-score span {
+  color: var(--semantic-muted);
+  font-size: 0.82rem;
+}
+
+.graph-related-empty {
+  margin-top: 18px !important;
+  color: var(--semantic-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 820px) {
+  .graph-page { padding: 36px 22px 48px; }
+  .graph-layout { grid-template-columns: 1fr; }
+  .graph-main { padding-right: 0; }
+  .graph-stage { height: 480px; min-height: 0; }
+  .graph-sidebar {
+    margin-top: 20px;
+    padding: 30px 0 0;
+    border-top: 1px solid var(--semantic-border);
+    border-left: 0;
+  }
+  .graph-sidebar h2 { margin-top: 18px; }
+}
+
+@media (max-width: 520px) {
+  .graph-page { padding-inline: 18px; }
+  .graph-legend { gap: 12px 18px; margin-top: 26px; font-size: 0.78rem; }
+  .graph-line { width: 31px; }
+  .graph-legend-item { gap: 6px; }
+  .graph-stage { height: 400px; }
+}

@@ -1,0 +1,60 @@
+name: Build and deploy RootLog
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 1 * * *' # 10:00 Asia/Seoul
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Authenticate to Google Cloud
+        if: ${{ vars.GA4_PROPERTY_ID != '' && vars.GA4_MEASUREMENT_ID != '' && vars.GCP_WIF_PROVIDER != '' && vars.GCP_SERVICE_ACCOUNT_EMAIL != '' }}
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT_EMAIL }}
+      - name: Refresh GA4 snapshot
+        if: ${{ vars.GA4_PROPERTY_ID != '' && vars.GA4_MEASUREMENT_ID != '' && vars.GCP_WIF_PROVIDER != '' && vars.GCP_SERVICE_ACCOUNT_EMAIL != '' }}
+        run: node scripts/fetch-stats.mjs
+        env:
+          GA4_PROPERTY_ID: ${{ vars.GA4_PROPERTY_ID }}
+      - run: npm run build
+        env:
+          VITE_GA4_MEASUREMENT_ID: ${{ vars.GA4_MEASUREMENT_ID }}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
