@@ -16,4 +16,16 @@ describe('extractToc', () => {
       { id: '실제-제목', level: 1, text: '실제 제목' },
     ])
   })
+
+  it('keeps ids aligned when hidden heading levels consume a duplicate slug', () => {
+    expect(extractToc('#### Intro\n\n## Intro')).toEqual([
+      { id: 'intro-1', level: 2, text: 'Intro' },
+    ])
+  })
+
+  it('matches rendered ids for images inside headings', () => {
+    expect(extractToc('## ![Logo](/logo.png) title')).toEqual([
+      { id: '-title', level: 2, text: 'title' },
+    ])
+  })
 })

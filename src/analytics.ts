@@ -14,6 +14,12 @@ export function createPageViewTracker(send: (path: string, title: string) => voi
   }
 }
 
+export function createGtag(dataLayer: unknown[]) {
+  return function gtag(..._args: unknown[]) {
+    dataLayer.push(arguments)
+  }
+}
+
 let initialized = false
 const track = createPageViewTracker((path, title) => {
   window.gtag?.('event', 'page_view', {
@@ -29,7 +35,7 @@ export function trackPageView(path: string, title: string) {
   if (!initialized) {
     initialized = true
     window.dataLayer = window.dataLayer ?? []
-    window.gtag = (...args: unknown[]) => { window.dataLayer?.push(args) }
+    window.gtag = createGtag(window.dataLayer)
     window.gtag('js', new Date())
     window.gtag('config', id, { send_page_view: false })
     const script = document.createElement('script')
