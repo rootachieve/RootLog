@@ -89,7 +89,7 @@ function HomePage() {
             </Link>
           ))}
         </div>
-      ) : <p className="empty-message">이 카테고리에는 아직 글이 없습니다.</p>}
+      ) : <p className="empty-message">{category ? '이 카테고리에는 아직 글이 없습니다.' : '아직 글이 없습니다.'}</p>}
     </main>
   )
 }

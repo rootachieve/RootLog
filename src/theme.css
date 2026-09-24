@@ -7,6 +7,25 @@
   --color-ash: #f1f1f1;
   --color-hairline: #0000001f;
   --color-whisper: #0000000a;
+  --color-relation-pink: #d68dba;
+  --color-relation-violet: #9997df;
+  --color-relation-cyan: #74bdd0;
+  --color-relation-lime: #a7c777;
+  --color-relation-amber: #d9b56c;
+  --color-relation-coral: #dd8d87;
+  --color-category-default: #c8d8f2;
+  --color-category-frontend: #f4bfd4;
+  --color-category-backend: #d7c7f2;
+  --color-category-data: #bce4db;
+  --color-category-infrastructure: #f4d9b8;
+  --color-category-practice: #d6e9bf;
+  --color-category-reading: #f2e0a1;
+  --color-code-purple: #70439a;
+  --color-code-green: #256b46;
+  --color-code-blue: #245f9c;
+  --color-code-teal: #126775;
+  --color-code-rust: #95513a;
+  --color-code-gray: #66717d;
 
   /* Typography */
   --font-openai-sans: 'OpenAI Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;

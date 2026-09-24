@@ -1,14 +1,1 @@
-[
-  {
-    "id": 1,
-    "title": "RootLog 시작",
-    "publishedAt": "2026-03-03",
-    "summary": "GitHub Pages 배포를 확인하기 위한 첫 번째 기록입니다.",
-    "description": "GitHub Pages에 올리는 첫 번째 기록입니다.",
-    "thumbnail": "/images/rootlog-start.png",
-    "tags": ["intro", "minimal"],
-    "category": "기본",
-    "keywords": ["RootLog", "GitHub Pages", "React"],
-    "fileName": "001-hello-rootlog.md"
-  }
-]
+[]

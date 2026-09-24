@@ -23,7 +23,7 @@ function fixture() {
     publishedAt: '2026-03-03',
     summary: '요약',
     description: '읽기 <좋은> 글',
-    thumbnail: '/images/rootlog-start.png',
+    thumbnail: '/images/rootlog-start.jpg',
     tags: ['intro'],
     category: '기본',
     keywords: ['RootLog'],
@@ -67,7 +67,7 @@ test('creates direct-entry pages with escaped post metadata and root asset paths
   assert.match(graph, /<title>관계 그래프 \| RootLog<\/title>/);
   assert.match(post, /<title>첫 글 &amp; 기록 \| RootLog<\/title>/);
   assert.match(post, /name="description" content="읽기 &lt;좋은&gt; 글"/);
-  assert.match(post, /property="og:image" content="https:\/\/rootachieve.github.io\/images\/rootlog-start.png"/);
+  assert.match(post, /property="og:image" content="https:\/\/rootachieve.github.io\/images\/rootlog-start.jpg"/);
   assert.match(post, /src="\/assets\/main.js"/);
   assert.equal(fallback, readFileSync(join(distDir, 'index.html'), 'utf8'));
 });
